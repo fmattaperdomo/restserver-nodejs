@@ -15,11 +15,11 @@ app.get("/", function(req, res) {
 app.get("/usuario", verificaToken, function(req, res) {
     //res.json("GET Usuario LOCAL!!!");
 
-    return res.json({
-        usuario: req.usuario,
-        nombre: req.usuario.nombre,
-        email: req.usuario.email,
-    });
+    // return res.json({
+    //     usuario: req.usuario,
+    //     nombre: req.usuario.nombre,
+    //     email: req.usuario.email,
+    // });
 
     let desde = req.query.desde || 0;
     desde = Number(desde);
@@ -50,12 +50,12 @@ app.get("/usuario", verificaToken, function(req, res) {
 app.post("/usuario", [verificaToken, verificaAdmin_Role], function(req, res) {
     let body = req.body;
 
-    // let usuario = new Usuario({
-    //     nombre: body.nombre,
-    //     email: body.email,
-    //     password: bcrypt.hashSync(body.password, 10),
-    //     role: body.role,
-    // });
+    let usuario = new Usuario({
+        nombre: body.nombre,
+        email: body.email,
+        password: bcrypt.hashSync(body.password, 10),
+        role: body.role,
+    });
 
     usuario.save((err, usuarioDB) => {
         if (err) {

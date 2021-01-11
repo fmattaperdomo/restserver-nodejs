@@ -13,6 +13,7 @@ let verificaToken = (req, res, next) => {
             });
         }
         req.usuario = decoded.usuario;
+        req.categoria = decoded.categoria;
         next();
     });
     //console.log(token);
